@@ -36,10 +36,7 @@ def hits(targets):
     return y
 
 def target_to_string(target):
-    if is_open(target):
-        return "* "
-    elif is_closed(target):
-        return "0 "
+    return "* " if is_open(target) else "0 "
 
 def targets_to_string(targets):
     return list(map(target_to_string, targets))
