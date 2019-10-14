@@ -1,9 +1,18 @@
 import random
 
-def splasch():
-    print("\n\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-    print("      Welcome to Splasch\n\n\n    - A hit or miss game -")
-    print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+def splash():
+    print(
+            '''
+            \n\n\n
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            \n
+                    Welcome to Splasch   
+                  \n\n\n 
+                  - A hit or miss game -
+            \n
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            '''
+         )
     return None #Enligt uppgiften måste den retunera None
 
 def open():
@@ -13,14 +22,10 @@ def closed():
     return 1
 
 def is_open(target):
-    if target == open(): #Måste jämföras med funktionen open()
-        return True
-    return False
+    return True if target == open() else False
 
 def is_closed(target):
-    if target == closed(): #Måste jämföras med funktionen closed()
-        return True
-    return False
+    return True if target == closed() else False
 
 def new_target():
     tomlista = []
@@ -40,16 +45,10 @@ def hits(targets):
     return y
 
 def target_to_string(target):
-    if is_open(target):
-        return "* "
-    elif is_closed(target):
-        return "0 "
+    return "* " if is_open(target) else "0 "
 
 def targets_to_string(targets):
-    nylista = []
-    for x in targets:
-        nylista.append(target_to_string(x))
-    return nylista
+    return list(map(target_to_string, targets))
 
 def view_targets(targets):
     print("\n1 2 3 4 5")
@@ -58,9 +57,7 @@ def view_targets(targets):
     return None
 
 def random_hit():
-    if random.randint(0,1) == open():
-        return True
-    return False
+    return True if random.randint(0,1) == open() else False
 
 def shoot(target, targets):
     hit = random_hit()
@@ -82,7 +79,7 @@ def parse_target(string):
     return None
 
 #======== Spelapparaten ==================
-splasch() #Skapar ett nytt spel
+splash() #Skapar ett nytt spel
 ts = new_target() #Du får en ny tom spelplan
 
 print("\nYou got 5 shots\n----------------") #Instruktioner
@@ -91,7 +88,10 @@ view_targets(ts)
 
 actualshot = 0 #Räknar effektiva siffror
 
-while actualshot != 5:
+#antalskott = int(input("Så många skott vill du ha: "))
+antalskott = 5
+
+while actualshot != antalskott:
     t = parse_target(input(f"\n\nShot {actualshot+1} at: "))
     if t in range(0,5):
         print(shoot(t, ts))
