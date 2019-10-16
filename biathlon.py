@@ -1,4 +1,5 @@
 import random
+from random import randint
 
 def splash():
     print(
